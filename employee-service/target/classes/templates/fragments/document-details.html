@@ -1,0 +1,45 @@
+<!-- templates/fragments/document-details.html -->
+<div th:fragment="documentView(documents)">
+    <div class="card shadow-sm p-4 mb-4">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h5 class="mb-0 text-theme">📁 Documents</h5>
+            <a href="#" class="btn btn-sm btn-outline-success">
+                <i class="fas fa-upload"></i> Upload Document
+            </a>
+        </div>
+
+        <table class="table table-sm table-hover align-middle">
+            <thead class="table-light">
+            <tr>
+                <th>Type</th>
+                <th>File Name</th>
+                <th>Uploaded On</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="doc : ${documents}">
+                <td th:text="${doc.title}">CNIC</td>
+                <td>
+                    <a th:href="@{'/employees/documents/view/' + ${doc.id}}" target="_blank" class="text-decoration-underline text-primary">
+                        <span th:text="${doc.fileName}">cnic.pdf</span>
+                    </a>
+                </td>
+                <td th:text="${#temporals.format(doc.uploadedDate, 'dd MMM yyyy')}">-</td>
+                <td>
+                    <a th:href="@{'/employees/documents/download/' + ${doc.id}}" class="btn btn-sm btn-outline-primary me-2" title="Download">
+                        <i class="fas fa-download"></i>
+                    </a>
+                    <a th:href="@{'/employees/documents/delete/' + ${doc.id}}" class="btn btn-sm btn-outline-danger" title="Delete"
+                       onclick="return confirm('Are you sure you want to delete this document?')">
+                        <i class="fas fa-trash-alt"></i>
+                    </a>
+                </td>
+            </tr>
+            <tr th:if="${documents == null or #lists.isEmpty(documents)}">
+                <td colspan="4" class="text-center text-muted">No documents uploaded yet.</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

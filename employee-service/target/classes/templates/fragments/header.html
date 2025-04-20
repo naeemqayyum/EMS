@@ -1,0 +1,44 @@
+<div th:fragment="header">
+    <nav class="navbar navbar-expand-lg bg-theme shadow-sm w-100 px-4" style="height: 70px;">
+        <div class="d-flex justify-content-between align-items-center w-100">
+
+            <!-- Left: App title -->
+            <a class="navbar-brand fw-bold text-white fs-4" th:href="@{/employees/dashboard}"
+               th:text="#{portal.title}">Payroll Portal</a>
+
+            <!-- Center: Smart Document Search -->
+            <form th:action="@{/documents/search}" method="get" class="flex-grow-1 mx-5" style="max-width: 600px;">
+                <input type="text" name="query" class="form-control rounded-pill px-4"
+                       placeholder="🔍 Search policies, documents, descriptions..." />
+            </form>
+
+            <!-- Right: User Info, Notifications, Settings, Logout -->
+            <div class="d-flex align-items-center gap-4">
+
+                <!-- User greeting -->
+                <span class="text-white fw-semibold">
+                    👋 Welcome, <span th:text="${session.userName}">Admin</span>
+                </span>
+
+                <!-- Notifications -->
+                <a th:href="@{/notifications}" class="text-white position-relative" data-bs-toggle="tooltip" title="Notifications">
+                    <i class="fas fa-bell fa-lg"></i>
+                    <span th:if="${notificationCount > 0}"
+                          class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                        <span th:text="${notificationCount}">3</span>
+                    </span>
+                </a>
+
+                <!-- Settings -->
+                <a th:href="@{/settings}" class="text-white" data-bs-toggle="tooltip" title="Settings">
+                    <i class="fas fa-cog fa-lg"></i>
+                </a>
+
+                <!-- Logout -->
+                <a th:href="@{/logout}" class="btn btn-sm btn-outline-light">
+                    <i class="fas fa-sign-out-alt me-1"></i> Logout
+                </a>
+            </div>
+        </div>
+    </nav>
+</div>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Employee Details</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" th:href="@{/css/styles.css}" />
+</head>
+<body>
+
+<div th:replace="fragments/header :: header"></div>
+
+<div class="d-flex" style="min-height: 100vh;">
+  <div th:replace="fragments/navbar :: navbar"></div>
+
+  <main class="flex-grow-1 p-4 bg-light">
+    <h2 class="page-title">Employee Details</h2>
+
+    <!-- Tabs -->
+    <ul class="nav nav-tabs mb-3" id="employeeTabs" role="tablist">
+      <li class="nav-item"><a class="nav-link active" id="profile-tab" data-bs-toggle="tab" href="#profile">Profile</a></li>
+      <li class="nav-item"><a class="nav-link" id="employment-tab" data-bs-toggle="tab" href="#employment">Employment</a></li>
+      <li class="nav-item"><a class="nav-link" id="salary-tab" data-bs-toggle="tab" href="#salary">Salary</a></li>
+      <li class="nav-item"><a class="nav-link" id="attendance-tab" data-bs-toggle="tab" href="#attendance">Attendance</a></li>
+      <li class="nav-item"><a class="nav-link" id="bank-tab" data-bs-toggle="tab" href="#bank">Bank Details</a></li>
+      <li class="nav-item"><a class="nav-link" id="experience-tab" data-bs-toggle="tab" href="#experience">Experience</a></li>
+      <li class="nav-item"><a class="nav-link" id="education-tab" data-bs-toggle="tab" href="#education">Education</a></li>
+      <li class="nav-item"><a class="nav-link" id="documents-tab" data-bs-toggle="tab" href="#documents">Documents</a></li>
+    </ul>
+
+    <!-- Tab Content -->
+    <div class="tab-content" id="employeeTabsContent">
+      <div class="tab-pane fade show active" id="profile" role="tabpanel">
+        <div th:replace="fragments/employee-profile :: profileView(employee=${employee})"></div>
+      </div>
+
+      <div class="tab-pane fade" id="employment">
+        <div th:replace="fragments/employment-details :: employmentView(employee=${employee})"></div>
+      </div>
+
+      <div class="tab-pane fade" id="salary">
+        <div th:replace="fragments/salary-details :: salaryView(${employeeSalary})"></div>
+      </div>
+
+      <div class="tab-pane fade" id="attendance">
+        <div th:replace="fragments/attendance-details :: attendanceView(${attendanceList}, ${leaveSummary}, ${holidays})"></div>
+      </div>
+
+      <div class="tab-pane fade" id="bank">
+        <div th:replace="fragments/employee-bank :: bankDetailsView(${employee})"></div>
+      </div>
+
+      <div class="tab-pane fade" id="education">
+        <div th:replace="fragments/education-details :: educationView(${employee})"></div>
+      </div>
+
+      <div class="tab-pane fade" id="experience">
+        <div th:replace="fragments/experience-details :: experienceView(${employee})"></div>
+      </div>
+
+      <div class="tab-pane fade" id="documents">
+        <div th:replace="fragments/document-details :: documentView(${employee.documents})"></div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<div th:replace="fragments/footer :: footer"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

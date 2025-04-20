@@ -1,0 +1,55 @@
+<div th:fragment="navbar">
+    <div class="sidebar">
+        <h4 class="mb-4">Payroll System</h4>
+
+
+
+        <!-- Dashboard -->
+        <a th:href="@{/employees/dashboard}"
+           th:classappend="${#httpServletRequest.requestURI == '/employees/dashboard' || #httpServletRequest.requestURI == '/' ? 'active' : ''}">
+            <i class="fas fa-chart-line me-2"></i> Dashboard
+        </a>
+
+        <!-- Employees -->
+        <a th:href="@{/employees-view}"
+           th:classappend="${#httpServletRequest.requestURI.startsWith('/employees-view') ? 'active' : ''}">
+            <i class="fas fa-users me-2"></i> Employees
+        </a>
+
+        <!-- Attendance -->
+        <a th:href="@{/attendance}"
+           th:classappend="${#httpServletRequest.requestURI.startsWith('/attendance') ? 'active' : ''}">
+            <i class="fas fa-calendar-check me-2"></i> Attendance
+        </a>
+
+        <!-- Salary Structure -->
+        <a th:href="@{/salary-structure}"
+           th:classappend="${#httpServletRequest.requestURI.startsWith('/salary-structure') ? 'active' : ''}">
+            <i class="fas fa-layer-group me-2"></i> Salary Structure
+        </a>
+
+        <!-- Payroll -->
+        <a th:href="@{/payroll}"
+           th:classappend="${#httpServletRequest.requestURI.startsWith('/payroll') ? 'active' : ''}">
+            <i class="fas fa-money-bill-wave me-2"></i> Payroll
+        </a>
+
+        <!-- Payslips -->
+        <a th:href="@{/payslips}"
+           th:classappend="${#httpServletRequest.requestURI.startsWith('/payslips') ? 'active' : ''}">
+            <i class="fas fa-file-invoice-dollar me-2"></i> Payslips
+        </a>
+
+        <!-- Reports -->
+        <a th:href="@{/reports}"
+           th:classappend="${#httpServletRequest.requestURI.startsWith('/reports') ? 'active' : ''}">
+            <i class="fas fa-chart-pie me-2"></i> Reports
+        </a>
+
+        <!-- Settings -->
+        <a th:href="@{/settings}"
+           th:classappend="${#httpServletRequest.requestURI.startsWith('/settings') ? 'active' : ''}">
+            <i class="fas fa-cog me-2"></i> Settings
+        </a>
+    </div>
+</div>

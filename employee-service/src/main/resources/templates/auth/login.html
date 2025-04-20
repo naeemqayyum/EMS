@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Login | Salario</title>
+  <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body class="login-wrapper">
+
+<div class="login-card">
+  <h2>Salario Login</h2>
+
+  <form th:action="@{/login}" method="post" class="login-form">
+    <div th:if="${param.error}" class="error-msg">
+      Invalid username or password
+    </div>
+
+    <label for="username">Username</label>
+    <input type="text" name="username" id="username" required>
+
+    <label for="password">Password</label>
+    <input type="password" name="password" id="password" required>
+
+    <button type="submit">Login</button>
+  </form>
+
+  <div class="footer">© 2025 Salario | All rights reserved</div>
+</div>
+<script th:src="@{/js/login.js}"></script>
+</body>
+</html>

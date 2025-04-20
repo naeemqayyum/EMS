@@ -1,0 +1,83 @@
+<!-- templates/fragments/attendance-details.html -->
+<div th:fragment="attendanceView(attendanceList, leaveSummary, holidays)">
+  <div class="card shadow-sm p-4 mb-4">
+    <!-- 🔹 Header -->
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h5 class="mb-0 text-theme">🕒 Attendance</h5>
+      <select class="form-select w-auto">
+        <option>April 2025</option>
+        <option>March 2025</option>
+        <!-- Populate dynamically -->
+      </select>
+    </div>
+
+    <!-- 🔸 Summary Row -->
+    <div class="row mb-3 text-muted small">
+      <div class="col">Present: <strong th:text="${leaveSummary.presentDays ?: 0}">0</strong></div>
+      <div class="col">Absent: <strong th:text="${leaveSummary.absentDays ?: 0}">0</strong></div>
+      <div class="col">Leave: <strong th:text="${leaveSummary.leaveDays ?: 0}">0</strong></div>
+      <div class="col">Late: <strong th:text="${leaveSummary.lateDays ?: 0}">0</strong></div>
+    </div>
+
+    <!-- 🔹 Attendance Table -->
+    <h6 class="text-secondary mt-4 mb-2">Daily Attendance</h6>
+    <table class="table table-hover table-sm align-middle">
+      <thead class="table-light">
+      <tr>
+        <th>Date</th>
+        <th>Status</th>
+        <th>In-Time</th>
+        <th>Out-Time</th>
+        <th>Hours</th>
+        <th>Notes</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="record : ${attendanceList}">
+        <td th:text="${record.date}">-</td>
+        <td th:text="${record.status}">-</td>
+        <td th:text="${record.inTime}">-</td>
+        <td th:text="${record.outTime}">-</td>
+        <td th:text="${record.totalHours}">-</td>
+        <td th:text="${record.note}">-</td>
+      </tr>
+      <tr th:if="${attendanceList == null or #lists.isEmpty(attendanceList)}">
+        <td colspan="6" class="text-center text-muted">No attendance records available.</td>
+      </tr>
+      </tbody>
+    </table>
+
+    <!-- 🔹 Leave Summary -->
+    <h6 class="text-secondary mt-4 mb-2">Leave Summary</h6>
+    <div class="row mb-3">
+      <div class="col-md-3">Annual Leaves: <strong th:text="${leaveSummary.totalAnnualLeaves ?: 0}">0</strong></div>
+      <div class="col-md-3">Casual Leaves: <strong th:text="${leaveSummary.totalCasualLeaves ?: 0}">0</strong></div>
+      <div class="col-md-3">Sick Leaves: <strong th:text="${leaveSummary.totalSickLeaves ?: 0}">0</strong></div>
+      <div class="col-md-3 text-end">
+        <a href="#" class="btn btn-sm btn-outline-success">
+          <i class="fas fa-calendar-plus"></i> Apply for Leave
+        </a>
+      </div>
+    </div>
+
+    <!-- 🔸 Leave Dates Taken -->
+    <div class="mb-4">
+      <h6 class="text-secondary">Leave Dates</h6>
+      <ul class="list-group list-group-sm">
+        <li th:each="date : ${leaveSummary.leaveDates}" class="list-group-item py-1 px-2" th:text="${date}">-</li>
+        <li th:if="${leaveSummary.leaveDates == null or #lists.isEmpty(leaveSummary.leaveDates)}" class="text-muted list-group-item py-1">No leaves taken yet.</li>
+      </ul>
+    </div>
+
+    <!-- 🏖 Upcoming Holidays -->
+    <div>
+      <h6 class="text-secondary">Upcoming Public Holidays</h6>
+      <ul class="list-group list-group-sm">
+        <li th:each="holiday : ${holidays}" class="list-group-item py-1 px-2">
+          <span th:text="${holiday.date}">Date</span> - <span th:text="${holiday.name}">Holiday</span>
+        </li>
+        <li th:if="${holidays == null or #lists.isEmpty(holidays)}" class="text-muted list-group-item py-1">No upcoming holidays.</li>
+      </ul>
+    </div>
+  </div>
+</div>

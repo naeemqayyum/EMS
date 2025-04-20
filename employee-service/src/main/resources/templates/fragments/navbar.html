@@ -1,0 +1,123 @@
+<!-- templates/fragments/navbar.html -->
+<div th:fragment="navbar">
+  <div class="sidebar" style="max-height: calc(100vh - 80px); overflow-y: auto;">
+
+    <h4 class="mb-4" th:text="#{navbar.title}">Payroll System</h4>
+
+    <!-- ✅ Pinned Modules -->
+    <div th:if="${pinnedModules != null and !pinnedModules.isEmpty()}" class="sidebar-pinned">
+      <h5 class="text-light mb-3" th:text="#{navbar.pinned}">📌 Pinned</h5>
+      <div th:each="module : ${pinnedModules}">
+        <a th:href="${module.url}"
+           th:classappend="${currentUrl == module.url} ? 'active' : ''">
+          <i class="fas fa-thumbtack me-2"></i>
+          <span th:text="${module.name}">Pinned</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Organization -->
+    <div class="accordion-item">
+      <h6 class="accordion-header">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#managementModules">
+          <i class="fas fa-briefcase me-2"></i><span th:text="#{navbar.management}">Organization</span>
+        </button>
+      </h6>
+      <div id="managementModules" class="accordion-collapse collapse">
+        <div class="accordion-body p-0">
+          <a href="/employees-view" th:classappend="${currentUrl.contains('/employees')} ? 'active' : ''">
+            <i class="fas fa-users me-2"></i> <span th:text="#{navbar.employees}">Employees</span>
+          </a>
+          <a href="/attendance" th:classappend="${currentUrl.contains('/attendance')} ? 'active' : ''">
+            <i class="fas fa-calendar-check me-2"></i> <span th:text="#{navbar.attendance}">Attendance</span>
+          </a>
+          <a href="/salary-structure" th:classappend="${currentUrl.contains('/salary-structure')} ? 'active' : ''">
+            <i class="fas fa-layer-group me-2"></i> <span th:text="#{navbar.salaryStructure}">Salary Structure</span>
+          </a>
+          <a href="/payroll" th:classappend="${currentUrl.contains('/payroll')} ? 'active' : ''">
+            <i class="fas fa-money-bill-wave me-2"></i> <span th:text="#{navbar.payroll}">Payroll</span>
+          </a>
+          <a href="/payslips" th:classappend="${currentUrl.contains('/payslips')} ? 'active' : ''">
+            <i class="fas fa-file-invoice-dollar me-2"></i> <span th:text="#{navbar.payslips}">Payslips</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- User Management -->
+    <div class="accordion-item">
+      <h6 class="accordion-header">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#userManagementModules">
+          <i class="fas fa-user-shield me-2"></i><span th:text="#{navbar.userManagement}">User Management</span>
+        </button>
+      </h6>
+      <div id="userManagementModules" class="accordion-collapse collapse">
+        <div class="accordion-body p-0">
+          <a href="/user-management" th:classappend="${currentUrl.contains('/user-management$')} ? 'active' : ''">
+            <i class="fas fa-user me-2"></i> <span>Users</span>
+          </a>
+          <a href="/user-management/roles" th:classappend="${currentUrl.contains('/user-management/roles')} ? 'active' : ''">
+            <i class="fas fa-users-cog me-2"></i> <span>Roles</span>
+          </a>
+          <a href="/user-management/permissions" th:classappend="${currentUrl.contains('/user-management/permissions')} ? 'active' : ''">
+            <i class="fas fa-user-lock me-2"></i> <span>Permissions</span>
+          </a>
+          <a href="/user-management/menus" th:classappend="${currentUrl.contains('/user-management/menus')} ? 'active' : ''">
+            <i class="fas fa-list-alt me-2"></i> <span>Menus</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Performance -->
+    <div class="accordion-item">
+      <h6 class="accordion-header">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#performanceModules">
+          <i class="fas fa-chart-line me-2"></i><span th:text="#{navbar.performance}">Performance</span>
+        </button>
+      </h6>
+      <div id="performanceModules" class="accordion-collapse collapse">
+        <div class="accordion-body p-0">
+          <a href="/pulse-surveys" th:classappend="${currentUrl.contains('/pulse-surveys')} ? 'active' : ''">
+            <i class="fas fa-poll me-2"></i> <span th:text="#{navbar.pulseSurveys}">Pulse Surveys</span>
+          </a>
+          <a href="/kpi-tracker" th:classappend="${currentUrl.contains('/kpi-tracker')} ? 'active' : ''">
+            <i class="fas fa-chart-bar me-2"></i> <span th:text="#{navbar.kpiTracker}">KPI Tracker</span>
+          </a>
+          <a href="/performance-reviews" th:classappend="${currentUrl.contains('/performance-reviews')} ? 'active' : ''">
+            <i class="fas fa-user-check me-2"></i> <span th:text="#{navbar.performanceReviews}">Performance Reviews</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Admin -->
+    <a href="/policy-center" th:classappend="${currentUrl.contains('/policy-center')} ? 'active' : ''">
+      <i class="fas fa-file-alt me-2"></i> <span th:text="#{navbar.policyCenter}">Policy Center</span>
+    </a>
+    <a href="/notifications" th:classappend="${currentUrl.contains('/notifications')} ? 'active' : ''">
+      <i class="fas fa-bell me-2"></i> <span th:text="#{navbar.notifications}">Notifications</span>
+    </a>
+    <a href="/reports" th:classappend="${currentUrl.contains('/reports')} ? 'active' : ''">
+      <i class="fas fa-chart-pie me-2"></i> <span th:text="#{navbar.reports}">Reports</span>
+    </a>
+    <a href="/settings" th:classappend="${currentUrl.contains('/settings')} ? 'active' : ''">
+      <i class="fas fa-cog me-2"></i> <span th:text="#{navbar.settings}">Settings</span>
+    </a>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.sidebar a').forEach(link => {
+      link.addEventListener('contextmenu', function (e) {
+        e.preventDefault();
+        const moduleName = this.innerText.trim();
+        const moduleUrl = this.getAttribute('href');
+        if (confirm(`Do you want to pin "${moduleName}"?`)) {
+          pinModule(moduleUrl, moduleName);
+        }
+      });
+    });
+  });
+</script>

@@ -1,0 +1,439 @@
+/* ========== Global Layout ========== */
+body {
+    background-color: #f8f9fa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+}
+
+.layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* ========== Sidebar ========== */
+.sidebar {
+    width: 240px;
+    background-color: #0a0c36;
+    color: #fff;
+    padding: 30px 20px;
+    box-shadow: 2px 0 6px rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 0;
+    height: 100vh;
+}
+
+.sidebar h4 {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    color: #ffffff;
+}
+
+.sidebar a {
+    color: #cfd8dc;
+    text-decoration: none;
+    display: block;
+    font-weight: 500;
+    margin-bottom: 18px;
+    padding: 10px 15px;
+    border-radius: 8px;
+    transition: all 0.2s;
+}
+
+.sidebar a:hover,
+.sidebar a.active {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+/* ========== Navbar Header ========== */
+.navbar {
+    background-color: #0a0c36;
+    color: white;
+    padding: 12px 30px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+}
+
+.navbar-brand {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: white;
+    letter-spacing: 0.5px;
+}
+
+.navbar-nav .nav-link {
+    font-size: 1rem;
+    font-weight: 500;
+    transition: color 0.2s ease-in-out;
+    color: white;
+    padding: 0.5rem 1rem;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #ffc107;
+}
+
+/* Center nav items */
+.navbar .mx-auto {
+    flex: 1;
+    justify-content: center;
+}
+
+/* Settings / Logout Icons */
+.navbar .action-icons a {
+    padding: 0 0.4rem;
+    color: white;
+}
+
+.navbar .action-icons a:hover {
+    color: #ffc107;
+}
+
+/* ========== Main Content Area ========== */
+.content {
+    flex: 1;
+    padding: 40px;
+    background-color: #f1f3f5;
+    min-height: 100vh;
+}
+
+h2 {
+    font-weight: bold;
+    margin-bottom: 30px;
+    color: #212529;
+}
+
+/* ========== Employee Table Layout ========== */
+.employee-header,
+.employee-row {
+    display: flex;
+    align-items: center;
+    padding: 12px 20px;
+}
+
+.employee-header {
+    border-bottom: 2px solid #dee2e6;
+    font-weight: 600;
+    color: #495057;
+    background-color: #f8f9fa;
+    border-radius: 6px;
+    padding: 12px 20px;
+    border: 1px solid #dee2e6;
+}
+
+.employee-row {
+    background-color: #ffffff;
+    margin-bottom: 4px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    transition: background-color 0.2s;
+    cursor: pointer;
+}
+
+.employee-row:hover {
+    background-color: #f1f3f5;
+}
+
+.employee-row:nth-child(even) {
+    background-color: #ffffff;
+}
+
+.employee-row:nth-child(odd) {
+    background-color: #f8f9fa;
+}
+
+.employee-header div,
+.employee-row div {
+    flex: 1;
+    padding: 0 10px;
+}
+
+.id-col {
+    flex: 0.5;
+}
+
+.action-col {
+    flex: 0.7;
+    text-align: right;
+}
+
+/* ========== Buttons ========== */
+.edit-btn {
+    font-size: 0.85rem;
+    padding: 5px 10px;
+    border-radius: 20px;
+    transition: all 0.2s;
+}
+
+.edit-btn:hover {
+    background-color: rgba(32, 66, 115, 0.68);
+    color: white;
+}
+
+/* ========== Tooltip Enhancements ========== */
+.tooltip {
+    transition: opacity 0.15s ease-in-out;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #215181;
+}
+
+.table td,
+.table th {
+    vertical-align: middle;
+}
+
+.sortable {
+    cursor: pointer;
+    position: relative;
+}
+
+.sortable::after {
+    content: "⇅";
+    font-size: 0.75em;
+    color: #d2f8d6;
+    margin-left: 6px;
+}
+.sortable.asc::after {
+    content: "↑";
+}
+.sortable.desc::after {
+    content: "↓";
+}
+.page-title {
+    color: #2e2f32; /* Elegant dark tone */
+    font-weight: 700;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    border-left: 6px solid #516486;
+    padding-left: 15px;
+    position: relative;
+    text-transform: capitalize;
+    letter-spacing: 0.5px;
+    background: linear-gradient(90deg, rgba(81,100,134,0.1) 0%, transparent 100%);
+    border-radius: 6px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.btn-primary {
+    background-color: #2e2f32;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #516486;
+}
+
+.dropdown-menu a {
+    font-weight: 500;
+}
+
+
+:root {
+    --theme-color: #0a0c36;
+}
+
+.bg-theme {
+    background-color: var(--theme-color) !important;
+    color: white !important;
+}
+
+.footer-enhanced {
+    background-color: var(--theme-color);
+}
+.table-wrapper {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+}
+
+.table thead {
+    background: linear-gradient(to right, #516486, #6c7b95);
+    color: white;
+    border-radius: 12px;
+}
+
+.table thead th {
+    padding: 12px 15px;
+    font-weight: 600;
+    border: none;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.table tbody tr {
+    background-color: #fff;
+    transition: box-shadow 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+    border-radius: 8px;
+}
+
+.table tbody tr:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    background-color: #f8fafc;
+}
+
+.table tbody td {
+    padding: 14px 15px;
+    border-top: none;
+    vertical-align: middle;
+    font-size: 0.95rem;
+}
+
+.table tbody tr td:first-child {
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+
+.table tbody tr td:last-child {
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+.card {
+    border: none;
+    border-radius: 12px;
+    background-color: #ffffff;
+}
+
+.card label {
+    font-size: 0.9rem;
+}
+
+.card .fw-semibold {
+    font-size: 1rem;
+    margin-top: 2px;
+}
+
+.btn-outline-primary {
+    border-radius: 20px;
+    padding: 6px 18px;
+    font-weight: 500;
+}
+.text-theme {
+    color: #516486;
+}
+
+.form-control-plaintext {
+    font-weight: 500;
+    color: #2e2f32;
+}
+.nav-tabs .nav-link {
+    color: #495057;
+    font-weight: 500;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px 6px 0 0;
+    background-color: #e9ecef;
+    margin-right: 4px;
+    transition: all 0.2s ease;
+}
+
+.nav-tabs .nav-link:hover {
+    background-color: #dfe6ed;
+}
+
+.nav-tabs .nav-link.active {
+    background-color: #516486;
+    color: white;
+    font-weight: 600;
+    border: none;
+}
+/* ========== Login Page Styling ========== */
+.login-wrapper {
+    background-color: #f8f9fa;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 40px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    max-width: 400px;
+    width: 100%;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.6s ease-in-out;
+}
+
+.login-card.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.login-card h2 {
+    margin-bottom: 25px;
+    font-size: 1.8rem;
+    color: #0a0c36;
+    text-align: center;
+}
+
+.login-form label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 500;
+    color: #212529;
+}
+
+.login-form input {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+    margin-bottom: 18px;
+    font-size: 0.95rem;
+}
+
+.login-form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #0a0c36;
+    color: white;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.login-form button:hover {
+    background-color: #516486;
+}
+
+.error-msg {
+    color: #dc3545;
+    margin-bottom: 12px;
+    font-weight: 500;
+}
+
+.footer {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 0.85rem;
+    color: #6c757d;
+}
+
+.sidebar-pinned h5 {
+    font-size: 0.9rem;
+    color: #cfd8dc;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.sidebar-pinned h5 {
+    font-size: 0.9rem;
+    color: #cfd8dc;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+

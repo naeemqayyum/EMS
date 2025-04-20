@@ -1,0 +1,5 @@
+com/payroll/payRollServiceApplication.class
+com/salarystructure/service/SalaryStructureService.class
+com/salarystructure/service/impl/SalaryStructureServiceImpl.class
+com/model/SalaryStructure.class
+com/salarystructure/SalaryStructureController.class

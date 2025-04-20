@@ -1,0 +1,53 @@
+<!-- templates/fragments/salary-details.html -->
+<div th:fragment="salaryView(employeeSalary)">
+    <div class="card shadow-sm p-4 mb-4">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h5 class="mb-0 text-theme">Salary Details</h5>
+            <a th:href="@{'/employees/' + ${employeeSalary.employeeId} + '/salary/edit'}"
+               class="btn btn-sm btn-outline-primary">
+                <i class="fas fa-edit"></i> Edit Salary
+            </a>
+        </div>
+
+        <!-- Earnings -->
+        <h6 class="text-success">Earnings</h6>
+        <table class="table table-sm table-borderless mb-4">
+            <tbody>
+            <tr th:each="component : ${employeeSalary.components}"
+                th:if="${component.componentType.category == 'EARNING' and component.active}">
+                <td th:text="${component.componentType.name}"></td>
+                <td class="text-end"
+                    th:text="${#numbers.formatDecimal(component.amount, 1, 'COMMA', 2, 'POINT') + ' ' + employeeSalary.currency}"></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <!-- Deductions -->
+        <h6 class="text-danger">Deductions</h6>
+        <table class="table table-sm table-borderless mb-4">
+            <tbody>
+            <tr th:each="component : ${employeeSalary.components}"
+                th:if="${component.componentType.category == 'DEDUCTION' and component.active}">
+                <td th:text="${component.componentType.name}"></td>
+                <td class="text-end"
+                    th:text="${#numbers.formatDecimal(component.amount, 1, 'COMMA', 2, 'POINT') + ' ' + employeeSalary.currency}"></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <!-- Summary -->
+        <hr>
+        <div class="d-flex justify-content-between fw-semibold">
+            <div>Total Earnings:</div>
+            <div th:text="${#numbers.formatDecimal(employeeSalary.totalEarnings, 1, 'COMMA', 2, 'POINT') + ' ' + employeeSalary.currency}"></div>
+        </div>
+        <div class="d-flex justify-content-between fw-semibold">
+            <div>Total Deductions:</div>
+            <div th:text="${#numbers.formatDecimal(employeeSalary.totalDeductions, 1, 'COMMA', 2, 'POINT') + ' ' + employeeSalary.currency}"></div>
+        </div>
+        <div class="d-flex justify-content-between fw-bold mt-2 border-top pt-2">
+            <div>Net Pay:</div>
+            <div th:text="${#numbers.formatDecimal(employeeSalary.netSalary, 1, 'COMMA', 2, 'POINT') + ' ' + employeeSalary.currency}"></div>
+        </div>
+    </div>
+</div>

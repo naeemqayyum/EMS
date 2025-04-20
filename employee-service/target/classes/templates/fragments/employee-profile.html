@@ -1,0 +1,70 @@
+<div th:fragment="profileView (employee)">
+    <div class="tab-pane fade show active" id="profile">
+
+        <!-- Header and Edit button with spacing -->
+        <div class="d-flex justify-content-between align-items-center mb-4 mt-2">
+            <h5 class="border-bottom pb-2 text-theme fw-bold mb-0">Personal Information</h5>
+            <a th:href="@{'/employees/edit/' + ${employee.employeeId}}" class="btn btn-outline-primary btn-sm">
+                <i class="fas fa-edit me-1"></i> Edit Profile
+            </a>
+        </div>
+
+        <!-- Profile Card -->
+        <div class="row g-4 bg-white p-4 shadow-sm rounded mb-4">
+            <div class="col-md-6">
+                <label class="form-label text-muted">Full Name</label>
+                <div class="fw-semibold fs-6" th:text="${employee.firstName != null || employee.lastName != null} ? ${employee.firstName + ' ' + employee.lastName} : ''"></div>
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label text-muted">Email</label>
+                <div class="fw-semibold fs-6" th:text="${employee.email}"></div>
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label text-muted">Phone</label>
+                <div class="fw-semibold fs-6" th:text="${employee.phone}"></div>
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label text-muted">Gender</label>
+                <div class="fw-semibold fs-6" th:text="${employee.gender}"></div>
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label text-muted">Date of Birth</label>
+                <div class="fw-semibold fs-6" th:text="${employee.dob}"></div>
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label text-muted">CNIC</label>
+                <div class="fw-semibold fs-6" th:text="${employee.cnic}"></div>
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label text-muted">Marital Status</label>
+                <div class="fw-semibold fs-6" th:text="${employee.maritalStatus}"></div>
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label text-muted">Emergency Contact</label>
+                <div class="fw-semibold fs-6" th:text="${employee.emergencyContact}"></div>
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label text-muted">Age</label>
+                <div class="fw-semibold fs-6" th:text="${employee.age}"></div>
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label text-muted">Employee Code</label>
+                <div class="fw-semibold fs-6" th:text="${employee.employeeCode}"></div>
+            </div>
+
+            <div class="col-md-12">
+                <label class="form-label text-muted">Address</label>
+                <div class="fw-semibold fs-6" th:text="${employee.address}"></div>
+            </div>
+        </div>
+    </div>
+</div>
