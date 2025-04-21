@@ -3,7 +3,7 @@ name: Build and Test
 on:
   pull_request:
     branches:
-      - main  # Replace with your default branch if different
+      - master  # Replace with your default branch if different
 
 jobs:
   build-and-test:
