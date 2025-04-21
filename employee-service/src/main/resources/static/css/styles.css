@@ -435,5 +435,9 @@ h2 {
     text-transform: uppercase;
     letter-spacing: 1px;
 }
+input.transition {
+    transition: width 0.3s ease-in-out;
+}
+
 
 

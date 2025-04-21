@@ -1,23 +1,49 @@
+<!-- templates/fragments/header.html -->
 <div th:fragment="header">
     <nav class="navbar navbar-expand-lg bg-theme shadow-sm w-100 px-4" style="height: 70px;">
         <div class="d-flex justify-content-between align-items-center w-100">
 
-            <!-- Left: App title -->
-            <a class="navbar-brand fw-bold text-white fs-4" th:href="@{/employees/dashboard}"
-               th:text="#{portal.title}">Payroll Portal</a>
+            <!-- Left: Logo + Dashboard button -->
+            <div class="d-flex align-items-center gap-3">
+                <a class="navbar-brand fw-bold text-white fs-4 mb-0" th:href="@{/dashboard/dashboard}"
+                   th:text="#{portal.title}">Payroll Portal</a>
 
-            <!-- Center: Smart Document Search -->
-            <form th:action="@{/documents/search}" method="get" class="flex-grow-1 mx-5" style="max-width: 600px;">
-                <input type="text" name="query" class="form-control rounded-pill px-4"
-                       placeholder="🔍 Search policies, documents, descriptions..." />
+                <a th:href="@{/dashboard/dashboard}" class="btn btn-sm btn-light fw-semibold text-theme shadow-sm border"
+                   style="border-radius: 6px;"
+                   data-bs-toggle="tooltip" title="Dashboard">
+                    <i class="fas fa-tachometer-alt me-1"></i> Dashboard
+                </a>
+            </div>
+
+            <!-- Center: Enhanced Search bar -->
+            <form th:action="@{/documents/search}" method="get"
+                  class="search-form d-flex align-items-center mx-4"
+                  style="flex-grow: 1; max-width: 600px; position: relative;">
+                <div class="input-group" style="transition: all 0.3s ease-in-out; width: 100%;">
+                    <span class="input-group-text bg-white border-end-0" style="border-radius: 0; border-right: none;">
+                        <i class="fas fa-search text-muted"></i>
+                    </span>
+                    <input id="searchInput" type="text" name="query"
+                           class="form-control border-start-0 px-3"
+                           style="border-radius: 0; box-shadow: none;"
+                           placeholder="Search documents, policies, descriptions..."
+                           onfocus="this.style.boxShadow='0 0 5px rgba(81,100,134,0.6)'"
+                           onblur="this.style.boxShadow='none'" />
+                    <button type="submit"
+                            class="btn btn-theme px-3"
+                            style="border-radius: 0; transition: box-shadow 0.2s ease;">
+                        Search
+                    </button>
+                </div>
             </form>
 
-            <!-- Right: User Info, Notifications, Settings, Logout -->
+            <!-- Right: Greeting + Icons -->
             <div class="d-flex align-items-center gap-4">
 
-                <!-- User greeting -->
-                <span class="text-white fw-semibold">
-                    👋 Welcome, <span th:text="${session.userName}">Admin</span>
+                <!-- Time-based greeting -->
+                <span class="text-white fw-semibold" id="greetingText">
+                    <!-- JS will fill this -->
+                    Welcome, <span th:text="${session.userName} ?: 'User'">User</span>
                 </span>
 
                 <!-- Notifications -->
@@ -35,10 +61,33 @@
                 </a>
 
                 <!-- Logout -->
-                <a th:href="@{/logout}" class="btn btn-sm btn-outline-light">
+                <a th:href="@{/logout}" class="btn btn-sm btn-outline-light" data-bs-toggle="tooltip" title="Logout">
                     <i class="fas fa-sign-out-alt me-1"></i> Logout
                 </a>
             </div>
         </div>
     </nav>
+
+    <!-- Dynamic Greeting Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const greetingEl = document.getElementById('greetingText');
+            const hour = new Date().getHours();
+            let message = 'Welcome';
+
+            if (hour >= 5 && hour < 12) message = 'Good morning';
+            else if (hour >= 12 && hour < 17) message = 'Good afternoon';
+            else if (hour >= 17 && hour < 22) message = 'Good evening';
+
+            const name = greetingEl.querySelector('span')?.innerText || 'User';
+            greetingEl.innerHTML = `${message}, <span>${name}</span>`;
+        });
+    </script>
+
+    <!-- Hover shadow on search button -->
+    <style>
+        .btn-theme:hover {
+            box-shadow: 0 0 10px rgba(81, 100, 134, 0.4);
+        }
+    </style>
 </div>

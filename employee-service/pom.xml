@@ -13,6 +13,10 @@
   <version>1.0.0</version>
   <packaging>jar</packaging>
   <name>Employee Service</name>
+  <properties>
+    <java.version>21</java.version>
+    <start-class>com.bootstrap.EmployeeServiceApplication</start-class>
+  </properties>
 
   <dependencies>
     <dependency>
@@ -57,6 +61,20 @@
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-security</artifactId>
     </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-data-jpa</artifactId>
+    </dependency>
+
+    <!-- Your existing dependencies (e.g. H2/MySQL/PostgreSQL) -->
+    <!-- Example: MySQL -->
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>8.0.33</version> <!-- ✅ Add a stable version -->
+    </dependency>
+
+
   </dependencies>
 
   <build>

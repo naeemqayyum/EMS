@@ -5,8 +5,9 @@
     <h4 class="mb-4" th:text="#{navbar.title}">Payroll System</h4>
 
     <!-- ✅ Pinned Modules -->
-    <div th:if="${pinnedModules != null and !pinnedModules.isEmpty()}" class="sidebar-pinned">
-      <h5 class="text-light mb-3" th:text="#{navbar.pinned}">📌 Pinned</h5>
+    <div th:if="${pinnedModules != null and !pinnedModules.isEmpty()}" class="sidebar-pinned mb-4">
+      <h5 class="text-light mb-3" th:text="#{navbar.pinned} ?: '📌 Pinned'">📌 Pinned</h5>
+
       <div th:each="module : ${pinnedModules}">
         <a th:href="${module.url}"
            th:classappend="${currentUrl == module.url} ? 'active' : ''">
@@ -17,7 +18,7 @@
     </div>
 
     <!-- Organization -->
-    <div class="accordion-item">
+    <div class="accordion-item mb-3">
       <h6 class="accordion-header">
         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#managementModules">
           <i class="fas fa-briefcase me-2"></i><span th:text="#{navbar.management}">Organization</span>
@@ -45,7 +46,7 @@
     </div>
 
     <!-- User Management -->
-    <div class="accordion-item">
+    <div class="accordion-item mb-3">
       <h6 class="accordion-header">
         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#userManagementModules">
           <i class="fas fa-user-shield me-2"></i><span th:text="#{navbar.userManagement}">User Management</span>
@@ -70,7 +71,7 @@
     </div>
 
     <!-- Performance -->
-    <div class="accordion-item">
+    <div class="accordion-item mb-3">
       <h6 class="accordion-header">
         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#performanceModules">
           <i class="fas fa-chart-line me-2"></i><span th:text="#{navbar.performance}">Performance</span>
@@ -92,16 +93,16 @@
     </div>
 
     <!-- Admin -->
-    <a href="/policy-center" th:classappend="${currentUrl.contains('/policy-center')} ? 'active' : ''">
+    <a href="/policy-center" class="d-block mb-2" th:classappend="${currentUrl.contains('/policy-center')} ? 'active' : ''">
       <i class="fas fa-file-alt me-2"></i> <span th:text="#{navbar.policyCenter}">Policy Center</span>
     </a>
-    <a href="/notifications" th:classappend="${currentUrl.contains('/notifications')} ? 'active' : ''">
+    <a href="/notifications" class="d-block mb-2" th:classappend="${currentUrl.contains('/notifications')} ? 'active' : ''">
       <i class="fas fa-bell me-2"></i> <span th:text="#{navbar.notifications}">Notifications</span>
     </a>
-    <a href="/reports" th:classappend="${currentUrl.contains('/reports')} ? 'active' : ''">
+    <a href="/reports" class="d-block mb-2" th:classappend="${currentUrl.contains('/reports')} ? 'active' : ''">
       <i class="fas fa-chart-pie me-2"></i> <span th:text="#{navbar.reports}">Reports</span>
     </a>
-    <a href="/settings" th:classappend="${currentUrl.contains('/settings')} ? 'active' : ''">
+    <a href="/settings" class="d-block mb-4" th:classappend="${currentUrl.contains('/settings')} ? 'active' : ''">
       <i class="fas fa-cog me-2"></i> <span th:text="#{navbar.settings}">Settings</span>
     </a>
   </div>
